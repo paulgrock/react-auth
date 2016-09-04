@@ -44,7 +44,7 @@ const App = withRouter (
       if (this.state.loggedIn) {
         return (
           <p>You're already logged in. Go to the <Link to="/welcome">welcome page</Link> or <Link to="/logout">logout</Link>.</p>
-        )
+        );
       } else {
         return (
           <form onSubmit={this.handleSubmit} className="login__form">
@@ -58,7 +58,7 @@ const App = withRouter (
             </div>
             <button type="submit" className="cta__button">Login</button>
           </form>
-        )
+        );
       }
     },
     render() {

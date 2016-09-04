@@ -11,9 +11,11 @@ Enzyme are used for testing React components.
 * Username: paulgrock@gmail.com
 * Password: password
 
-### Starting a dev server with webpack
+### Starting a dev server with webpack and an auth server with express
+Run these commands in different tabs.
 ```
 $ npm run start:dev
+$ npm run server
 ```
 
 ### Building for production
