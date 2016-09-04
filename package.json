@@ -4,6 +4,8 @@
   "private": true,
   "devDependencies": {
     "enzyme": "^2.4.1",
+    "foreman": "^2.0.0",
+    "nodemon": "^1.10.2",
     "react-addons-test-utils": "^15.3.1",
     "react-scripts": "0.4.0"
   },
@@ -17,8 +19,9 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node server",
-    "server": "PORT=3001 node server",
-    "start:dev": "react-scripts start",
+    "start:dev": "nf start -p 3000",
+    "client": "react-scripts start",
+    "server": "SERVER_PORT=3001 nodemon --debug server",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

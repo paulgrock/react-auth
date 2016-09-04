@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.SERVER_PORT || 3000);
 
 if (process.env.NODE_ENV === 'production') {
   const mainIndex = path.join(__dirname, 'build/index.html');
@@ -33,6 +33,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.post('/api/auth', (req, res) => {
+  console.log('api auth');
   const email = req.body.email;
   const password = req.body.password;
   if (email === "paulgrock@gmail.com" && password === "password") {
