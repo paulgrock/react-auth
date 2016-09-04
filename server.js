@@ -33,7 +33,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.post('/api/auth', (req, res) => {
-  console.log('api auth');
   const email = req.body.email;
   const password = req.body.password;
   if (email === "paulgrock@gmail.com" && password === "password") {
