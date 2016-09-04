@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  color: rgb(51, 51, 51);
+  background: url(http://images.apple.com/apple-events/september-2016/teaser/hero_image_large.jpg) 50% -70px no-repeat;
+  background-size: 2560px 1038px;
+}
+
+h3 {
+  margin: 0 0 .5em;
+  font-size: 1.25rem;
+}
+
+.main-container {
+  padding: 1em;
+  max-width: 95%;
+  width: 25em;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff;
+}
+
+.main-container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.cta__button {
+  -webkit-appearance: none;
+  font-size: 1rem;
+  float: right;
+  color: #fff;
+  background: linear-gradient(#37aaea, #117ed2);
+  border-radius: 4px;
+  padding: 9px 28px;
+  border: 1px solid #1992d9;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+}
+
+.cta__button:hover {
+  background: linear-gradient(#2f90d5, #0351b7);
+}
+
+.cta__button:active {
+  box-shadow: 0 1px 0 #fff, inset 0 0 9px rgba(0, 0, 0, 0.5);
+}
