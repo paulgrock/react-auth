@@ -11,15 +11,15 @@ Enzyme are used for testing React components.
 * Username: paulgrock@gmail.com
 * Password: password
 
-### Starting a dev server with webpack and an auth server with nodemon
-```
-$ npm run start:dev
-```
-
 ### Building for production
 ```
 $ npm run build
 $ npm start
+```
+
+### Starting a dev server with webpack and an auth server with nodemon
+```
+$ npm run start:dev
 ```
 
 ### Testing
