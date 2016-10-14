@@ -7,7 +7,7 @@
     "foreman": "^2.0.0",
     "nodemon": "^1.10.2",
     "react-addons-test-utils": "^15.3.1",
-    "react-scripts": "0.4.0"
+    "react-scripts": "0.6.0"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
