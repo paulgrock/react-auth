@@ -1,52 +1,46 @@
 import React from 'react';
 import './Login.css';
 import auth from '../utils/auth';
-import {withRouter, Link} from 'react-router';
+import {Link} from 'react-router';
 
-const App = withRouter (
-  React.createClass({
-    getInitialState() {
-      return {
-        error: false,
-        loggedIn: false
-      }
-    },
-    componentWillMount() {
-      this.setState({
-        loggedIn: auth.loggedIn()
-      })
-    },
-    handleSubmit(evt) {
-      const {router} = this.props;
-      evt.preventDefault();
-      const email = this.refs.email.value;
-      const password = this.refs.password.value;
-      auth.login(email, password, (loggedIn) => {
-        if (loggedIn) {
-          router.replace('/welcome');
-        } else {
-          this.setState({
-            error: true
-          });
-          router.replace('/');
-        }
-      });
-
-    },
-    displayError() {
-      if (this.state.error) {
-        return (
-          <p className="login__error">email and password aren't correct. Try: paulgrock@gmail.com | password</p>
-        )
-      }
-    },
-    displayLogInLogOut() {
-      if (this.state.loggedIn) {
-        return (
-          <p>You're already logged in. Go to the <Link to="/welcome">welcome page</Link> or <Link to="/logout">logout</Link>.</p>
-        );
+const Login = React.createClass({
+  getInitialState() {
+    return {
+      error: false,
+      loggedIn: false
+    }
+  },
+  componentWillMount() {
+    this.setState({
+      loggedIn: auth.loggedIn()
+    })
+  },
+  handleSubmit(evt) {
+    evt.preventDefault();
+    const email = this.refs.email.value;
+    const password = this.refs.password.value;
+    auth.login(email, password, (loggedIn) => {
+      var {router} = this.props
+      if (loggedIn) {
+        router.transitionTo('/welcome')
       } else {
-        return (
+        this.setState({
+          error: true
+        });
+        router.transitionTo('/')
+      }
+    });
+
+  },
+  render() {
+    return (
+      <main className="main-container main-container--login">
+        <header className="login__header">
+          <h3>Sign in to the test app</h3>
+        </header>
+        {this.state.loggedIn ? (
+          <p>You're already logged in. Go to the <Link to="/welcome">welcome page</Link> or <Link to="/logout">logout</Link>.</p>
+        ) : (
           <form onSubmit={this.handleSubmit} className="login__form">
             <div className="login__field-wrapper">
               <label htmlFor="email" className="login__label">Email:</label>
@@ -58,21 +52,13 @@ const App = withRouter (
             </div>
             <button type="submit" className="cta__button">Login</button>
           </form>
-        );
-      }
-    },
-    render() {
-      return (
-        <main className="main-container main-container--login">
-          <header className="login__header">
-            <h3>Sign in to the test app</h3>
-          </header>
-          {this.displayLogInLogOut()}
-          {this.displayError()}
-        </main>
-      );
-    }
-  })
-)
+        )}
+        {this.state.error && (
+          <p className="login__error">email and password aren't correct. Try: paulgrock@gmail.com | password</p>
+        )}
+      </main>
+    );
+  }
+});
 
-export default App;
+export default Login;

@@ -5,7 +5,7 @@ import Welcome from './welcome/Welcome';
 import Logout from './logout/Logout';
 import auth from './utils/auth';
 import './index.css';
-import { Router, Route, Redirect, browserHistory } from 'react-router';
+import { BrowserRouter, Match, Redirect } from 'react-router'
 
 function authRequired(nextState, replace) {
   if (!auth.loggedIn()) {
@@ -15,11 +15,21 @@ function authRequired(nextState, replace) {
   }
 }
 
-ReactDOM.render((
-	<Router history={browserHistory}>
-    <Route path="/" component={Login} />
-    <Redirect from="/login" to="/" />
-    <Route path="/welcome" component={Welcome} onEnter={authRequired} />
-    <Route path="/logout" component={Logout} />
-  </Router>
-), document.getElementById('root'));
+const App = () => (
+	<BrowserRouter>
+    {({ router }) => (
+      <div>
+        <Match exactly pattern="/" render={(matchProps) => (
+          <Login router={router} {...matchProps} />
+        )} />
+        <Match pattern="/login" render={() => (
+          <Redirect to="/" />
+        )} />
+        <Match pattern="/welcome" component={Welcome} />
+        <Match pattern="/logout" component={Logout} />
+      </div>
+    )}
+  </BrowserRouter>
+);
+
+ReactDOM.render(<App />, document.getElementById('root'));
