@@ -27,7 +27,6 @@ const Login = React.createClass({
         this.setState({
           error: true
         });
-        router.transitionTo('/')
       }
     });
 
