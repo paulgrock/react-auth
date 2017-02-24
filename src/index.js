@@ -4,23 +4,27 @@ import Login from './login/Login';
 import Welcome from './welcome/Welcome';
 import Logout from './logout/Logout';
 import './index.css';
-import { BrowserRouter, Match, Redirect } from 'react-router'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import authApp from './reducers';
+
+const store = createStore(authApp, applyMiddleware(thunk))
 
 const App = () => (
-	<BrowserRouter>
-    {({ router }) => (
+  <Provider store={store}>
+    <Router>
       <div>
-        <Match exactly pattern="/" render={(matchProps) => (
-          <Login router={router} {...matchProps} />
-        )} />
-        <Match pattern="/login" render={() => (
+        <Route exact path="/" component={Login} />
+        <Route path="/login" render={() => (
           <Redirect to="/" />
         )} />
-        <Match pattern="/welcome" component={Welcome} />
-        <Match pattern="/logout" component={Logout} />
+        <Route path="/welcome" component={Welcome} />
+        <Route path="/logout" component={Logout} />
       </div>
-    )}
-  </BrowserRouter>
+    </Router>
+  </Provider>
 );
 
 ReactDOM.render(<App />, document.getElementById('root'));

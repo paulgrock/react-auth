@@ -1,11 +1,13 @@
-import React from 'react';
-import auth from '../utils/auth';
-import {Link} from 'react-router';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import toggleLogin from '../actions/toggle-login';
 
-const Logout = React.createClass({
+class Logout extends Component {
   componentWillMount() {
-    auth.logOut();
-  },
+    this.props.handleLogOut();
+  }
+
   render() {
     return (
       <main className="main-container main-container--logout">
@@ -14,6 +16,12 @@ const Logout = React.createClass({
       </main>
     )
   }
-})
+}
 
-export default Logout;
+const mapDispatchToProps = (dispatch) => ({
+  handleLogOut() {
+    dispatch(toggleLogin(false))
+  }
+});
+
+export default connect(null, mapDispatchToProps)(Logout);

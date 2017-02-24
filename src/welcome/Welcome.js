@@ -1,7 +1,11 @@
 import React from 'react';
-import {Link} from 'react-router';
+import {Link, Redirect} from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Welcome = () => {
+const Welcome = ({loggedIn}) => {
+  if (!loggedIn) {
+    return <Redirect to='/' />
+  }
   return (
     <main className="main-container main-container--welcome">
       <h3>Welcome to the totally secure area!</h3>
@@ -10,4 +14,8 @@ const Welcome = () => {
   );
 }
 
-export default Welcome;
+const mapStateToProps = ({loggedIn}) => ({
+  loggedIn
+})
+
+export default connect(mapStateToProps)(Welcome);
