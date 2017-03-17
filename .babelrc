@@ -1,0 +1,12 @@
+{
+  "presets": [
+    [ "env", {
+      "targets": {
+        "safari": 10,
+        "node": true
+      },
+      "useBuiltIns": true,
+      "debug": true
+    }]
+  ]
+}

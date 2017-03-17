@@ -13,6 +13,8 @@
     "react-scripts": "^0.9.0"
   },
   "dependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-preset-env": "^1.1.10",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "isomorphic-fetch": "^2.2.1",
@@ -25,10 +27,10 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "start": "NODE_ENV=production node server",
+    "start": "NODE_ENV=production babel-node server",
     "start:dev": "nf start -p 3000",
     "client": "react-scripts start",
-    "server": "SERVER_PORT=3001 nodemon --debug server",
+    "server": "SERVER_PORT=3001 babel-node --inspect server",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

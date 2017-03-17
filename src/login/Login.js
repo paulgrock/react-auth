@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './Login.css';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import toggleLogin from '../actions/toggle-login';
 import fetchLoginThunk from '../actions/fetch-login';
 
 class Login extends Component {

@@ -10,18 +10,37 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import authApp from './reducers';
 
+const routes = [
+  {
+    path: '/',
+    exact: true,
+    component: Login
+  },
+  {
+    path: '/welcome',
+    component: Welcome
+  },
+  {
+    path: '/logout',
+    component: Logout
+  },
+  {
+    path: '/login',
+    render: () => (
+      <Redirect to="/" />
+    )
+  }
+]
+
 const store = createStore(authApp, applyMiddleware(thunk))
 
 const App = () => (
   <Provider store={store}>
     <Router>
       <div>
-        <Route exact path="/" component={Login} />
-        <Route path="/login" render={() => (
-          <Redirect to="/" />
-        )} />
-        <Route path="/welcome" component={Welcome} />
-        <Route path="/logout" component={Logout} />
+        {routes.map((route, idx) => (
+          <Route exact={route.exact} component={route.component} render={route.render} path={route.path} key={idx} />
+        ))}
       </div>
     </Router>
   </Provider>
